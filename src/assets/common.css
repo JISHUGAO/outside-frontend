@@ -1,0 +1,35 @@
+@import './reset.css';
+.nav {
+  background: #eff2f7;
+  line-height: 60px;
+  margin-bottom: .5rem;
+}
+.nav h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.g-align-right {
+  text-align: right;
+}
+.g-breadcrumb{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.g-article-item {
+  border-bottom: 0.1px solid #d9d9d9;
+  padding-bottom: 1rem;
+  padding-top:1rem;
+}
+.g-article-item:last-child {
+  border:none;
+}
+.g-article-container .g-title {
+  font-size:1.6rem;
+}
+.g-article-container .g-description {
+  font-size:.8rem;
+  color:#a59a9a;
+  padding-top: 1rem;
+}
