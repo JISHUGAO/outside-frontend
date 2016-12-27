@@ -1,13 +1,17 @@
 <template>
-  <div>
-    {{content}}
-  </div>
+  <el-row>
+  <el-col class="g-text-center">
+{{content}}
+  </el-col>
+  </el-row>
+    
+  
 </template>
 <script>
   export default {
     data () {
       return {
-        content: '我是底部'
+        content: ''
       }
     }
   }
