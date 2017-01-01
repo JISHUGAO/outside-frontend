@@ -4,15 +4,16 @@
     <el-col :span="4">
       <h1>G-lab</h1>
     </el-col>
-    <el-col :span="14">
+    <el-col :span="13">
         <el-menu default-active="index" class="el-menu-demo" mode="horizontal" :router="true">
               <el-menu-item index="/index" v-on:select="clickSelect">首页</el-menu-item>
               <el-menu-item v-for="menu in menus" :index="menu.id|concat">{{menu.name}}</el-menu-item>
         </el-menu>
     </el-col>
     <!-- 用户登录状态 -->
-    <el-col :span="6" class="user g-align-right" v-if="isLogin">
+    <el-col :span="7" class="user g-align-right" v-if="isLogin">
       <div>
+        <span class="chat-room" @click="showChatRoom">聊天室</span>
         <img :src="user.avatar" class="avatar">
         <span>{{user.nickname}}</span>
         |
@@ -20,27 +21,23 @@
       </div>
       
     </el-col>
-    <el-col :span="6" class="user g-align-right" v-else="isLogin">
+    <el-col :span="7" class="user g-align-right" v-else="isLogin">
       <span id="register" @click="showRegister">注册</span> | 
       <span id="login" @click="showLogin">登录</span>
     </el-col>
+
   </el-row> 
 
   
-
 </template>
 
 <script>
   import Api from '../api'
-  import login from './login'
   export default {
     data () {
       return {
         
       }
-    },
-    components: {
-      login
     },
     methods: {
       clickSelect (index, path) {
@@ -69,6 +66,9 @@
         }).catch(() => {
                   
         });
+      },
+      showChatRoom () {
+        this.$store.state.dialogChatRoomVisible = true
       }
     },
     computed: {
@@ -108,5 +108,8 @@
     display: inline-block;
     vertical-align: middle;
     margin-top: -0.3rem;
+  }
+  .chat-room {
+    float: left;
   }
 </style>

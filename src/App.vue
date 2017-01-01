@@ -26,6 +26,11 @@
     <my-footer></my-footer>
     <login></login>
     <register></register>
+
+    <keep-alive>
+      <chat-room></chat-room>
+    </keep-alive>
+    
   </div>
 </template>
 
@@ -34,13 +39,15 @@ import myHeader from './components/header'
 import myFooter from './components/footer'
 import login from './components/login'
 import register from './components/register'
+import chatRoom from './components/chat_room'
 export default {
   name: 'app',
   components: {
     myHeader,
     myFooter,
     login,
-    register
+    register,
+    chatRoom
   },
   computed: {
     currentPageName () {

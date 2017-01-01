@@ -17,6 +17,9 @@ a, a:hover, a:visited, a:link, a:active{
 .g-align-right {
   text-align: right;
 }
+.a-align-left {
+  text-align: left;
+}
 .g-breadcrumb{
   padding-bottom: 1rem;
   padding-top: 1rem;

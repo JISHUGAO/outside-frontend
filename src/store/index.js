@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import cookies from 'cookies-js'
 import commentList from './comment_list'
-
+import Api from '../api'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,9 +13,11 @@ export default new Vuex.Store({
     },
     dialogLoginVisible: false,
     dialogRegisterVisible: false,
+    dialogChatRoomVisible: false,
     currentPageName: '',
     menus: '',
-    searchKeyword: ''
+    searchKeyword: '',
+    socket: ''
   },
   mutations: {
     loginAction (state, info = {}) {
@@ -58,9 +60,27 @@ export default new Vuex.Store({
   actions: {
     logoutAction (context) {
       context.commit('logout')
+      //关闭WebSocket
+      if (context.state.socket) {
+        context.state.socket.close()
+      }
     },
     loginAction (context, info) {
       context.commit('loginAction', info)
+      // 连接WebSocket
+      if (context.state.isLogin) {
+        context.state.socket = new WebSocket(Api.chatAddress)
+        context.state.socket.onopen = function () {
+          var user = context.state.user
+          var data = {
+            type: 'login',
+            client: 'web',
+            data: user
+          }
+          context.state.socket.send(JSON.stringify(data))
+        }
+      }
+      
     },
     showLogin (context) {
       context.commit('changeLogin', true)

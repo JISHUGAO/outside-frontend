@@ -13,7 +13,7 @@
         </el-row>
       </el-col>
 
-      <el-col :span="18" :offset="3" class="g-pagination">
+      <el-col :span="18" :offset="3" class="g-pagination" v-if="showPagination">
         <el-pagination class="g-text-center" @current-change="handleCurrentChange" 
           layout="prev, pager, next"
           :total="totalCount" :page-size="size">
@@ -32,7 +32,8 @@
         totalCount: 0,
         page: 1,
         size: 0,
-        loading: false
+        loading: false,
+        showPagination: false
       }
     },
     props: [
@@ -44,6 +45,7 @@
         this.fetch(Api.articles + `?category=${category}&page=${page}`).then(function (data) {
           this.items = data.items
           this.size = data.size
+          this.showPagination = !!data.totalCount
           this.totalCount = data.totalCount
           this.loading = false
           this.setBreadcrumb()
